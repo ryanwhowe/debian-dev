@@ -10,15 +10,3 @@
 build:
 	echo "##### Build the local image #####"
 	docker build -t ryanwhowe/debian-dev:latest .
-
-run:
-	echo "##### Staring Container #####"
-	docker run -it --name prompt --user=${CURRENT_UID} --rm --mount type=bind,src=./code,dst=/var/www/html ryanwhowe/debian-dev:latest zsh 
-
-command:
-	echo "##### Staring Container #####"
-	docker run -it --name prompt --user=${CURRENT_UID} --rm --mount type=bind,src=./code,dst=/var/www/html ryanwhowe/debian-dev:latest /var/www/html/src/bin/console 
-
-command:
-	echo "##### Staring Container #####"
-	docker run -it --name prompt --user=${CURRENT_UID} --rm --mount type=bind,src=./code,dst=/var/www/html ryanwhowe/debian-dev:latest /var/www/html/src/bin/console 
