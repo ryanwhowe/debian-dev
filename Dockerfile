@@ -4,7 +4,7 @@ ENV TZ="America/New_York"
 
 RUN apt update && \
 apt upgrade -y && \
-apt install -y zsh zip unzip figlet fortune-mod curl wget bat eza git vim ffmpeg gzip && \
+apt install -y zsh zip unzip figlet fortune-mod curl wget bat eza git vim ffmpeg gzip p7zip-full && \
 apt autoremove -y && apt autoclean -y
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
