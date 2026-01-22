@@ -11,14 +11,19 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 php composer-setup.php --filename=composer --install-dir=/usr/local/bin && \
 php -r "unlink('composer-setup.php');"
 
-# Supported: install Symfony CLI; else, skip
-RUN case "$(uname -m)" in \
-      x86_64|aarch64|ppc64le|s390x) \
-        wget https://get.symfony.com/cli/installer -O - | bash && \
-        mv /root/.symfony5/bin/symfony /usr/local/bin/symfony ;; \
-      *) \
-        echo "Symfony CLI not supported on this architecture, skipping..." ;; \
-    esac
+# Attempt Symfony CLI installer but never let a non-zero exit break the build.
+RUN ARCH="$(uname -m)" && \
+    echo "Attempting to install Symfony CLI for architecture: ${ARCH}" && \
+    # Run installer and capture output; do not fail the build on non-zero exit
+    INSTALLER_OUTPUT="$(wget -q -O - https://get.symfony.com/cli/installer | bash 2>&1 || true)" && \
+    echo "${INSTALLER_OUTPUT}" && \
+    # If installer produced the binary, move it into PATH; otherwise print skip message
+    if [ -x /root/.symfony5/bin/symfony ]; then \
+      mv /root/.symfony5/bin/symfony /usr/local/bin/symfony && \
+      echo "Symfony CLI installed"; \
+    else \
+      echo "Symfony CLI not available for architecture ${ARCH}, skipping..."; \
+    fi
 
 #USER ${UNAME}
 RUN sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" && \
