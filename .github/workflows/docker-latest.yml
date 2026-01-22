@@ -2,10 +2,7 @@ name: Docker Image CI
 
 on: 
   schedule:
-    - cron: '0 0 * * 1' # Every Monday at midnight UTC
-  push:
-    branches:
-      - main
+    - cron: '0 0 1 * *' # Every Monday at midnight UTC
 
 jobs:
   build:
