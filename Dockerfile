@@ -4,7 +4,7 @@ ENV TZ="America/New_York"
 
 RUN apt update && \
 apt upgrade -y && \
-apt install -y zsh zip unzip figlet fortune-mod curl wget bat eza git vim ffmpeg gzip p7zip-full && \
+apt install -y zsh zip unzip figlet fortune-mod curl wget bat eza git vim ffmpeg gzip p7zip-full mc screen && \
 apt autoremove -y && apt autoclean -y
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -33,5 +33,7 @@ COPY fortunes/ /usr/share/games/fortunes/
 COPY oh-my-zsh/aliasez.zsh /root/.oh-my-zsh/custom/
 COPY oh-my-zsh/zshrc /root/.zshrc
 COPY oh-my-zsh/p10k.zsh /root/.p10k.zsh
+COPY mc/ini /root/.config/mc/ini
+COPY vimrc /root/.vimrc
 
 WORKDIR /root
