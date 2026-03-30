@@ -63,6 +63,7 @@ set cursorcolumn	" Highlight the column the cursor is on
 set nowrap		" Do not wrap long lines
 set showmode		" Show the mode youare on the last line
 set hlsearch		" Highlighting when doing a search
+set mouse=          " Disable ALL mouse interactions in vim
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
