@@ -2,6 +2,8 @@
 alias cat="batcat"
 alias bat="batcat"
 
+alias screen="screen -U"
+
 alias pad="code ~/ScratchPad.md"
 
 alias ls="exa --icons --group-directories-first"

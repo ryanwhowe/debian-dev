@@ -9,4 +9,8 @@
 
 build:
 	echo "##### Build the local image #####"
-	docker build -t ryanwhowe/debian-dev:latest .
+	docker build -t ryanwhowe/debian-dev:test .
+
+run:
+	echo "##### Running local test image #####"
+	docker run --rm -e TZ="America/New_York" -it -v "$$(pwd)":/root/mounted ryanwhowe/debian-dev:test
