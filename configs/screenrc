@@ -1,0 +1,5 @@
+startup_message off
+autodetach off
+
+# ZSH as default shell
+shell "/usr/bin/zsh"
