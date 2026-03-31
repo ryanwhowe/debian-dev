@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on: 
   schedule:
-    - cron: '0 0 1 * *' # Every Monday at midnight UTC
+    - cron: "0 0 1,15 * *"
   workflow_dispatch:
 
 jobs:
