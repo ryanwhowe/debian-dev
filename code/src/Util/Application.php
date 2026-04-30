@@ -6,24 +6,21 @@ use ReflectionClass;
 use ReflectionException;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\Finder\Finder;
 
 class Application extends BaseApplication {
 
-    const LOGO = '    ___                 ______                       __
+    const string LOGO = '    ___                 ______                       __
    /   |  _  _____     / ____/___  ____  _________  / /__
   / /| | | |/_/ _ \   / /   / __ \/ __ \/ ___/ __ \/ / _ \
  / ___ |_>  </  __/  / /___/ /_/ / / / (__  ) /_/ / /  __/
 /_/  |_/_/|_|\___/   \____/\____/_/ /_/____/\____/_/\___/';
 
-    const TAG_LINE = 'Let\'s Get Sh*t Done!!';
-    const NAME = 'Axe Console';
+    const string TAG_LINE = 'Let\'s Get Sh*t Done!!';
+    const string NAME = 'Axe Console';
 
-    const VERSION = '1.1.3';
+    const string VERSION = '1.1.3';
 
-
-    private $commandsRegistered = false;
 
     /**
      * @throws ReflectionException
@@ -32,10 +29,6 @@ class Application extends BaseApplication {
         parent::__construct(self::NAME, self::VERSION);
         
         $this->registerCommands();
-    }
-
-    public function getKernel(): KernelInterface {
-        return $this->kernel;
     }
 
     public function getLongVersion(): string {
