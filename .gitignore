@@ -1,1 +1,4 @@
 .Dockerfile.swp
+/vendor/
+/.idea/
+/.vscode/

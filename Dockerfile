@@ -45,7 +45,7 @@ RUN ARCH="$(uname -m)" && \
 # Install Oh-My-Zsh
 ###############################################################################
 RUN sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)" && \
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 
 ###############################################################################
 # Add custom configs to tooling
@@ -57,6 +57,13 @@ COPY configs/oh-my-zsh/p10k.zsh /root/.p10k.zsh
 COPY configs/mc/ini /root/.config/mc/ini
 COPY configs/vimrc /root/.vimrc
 COPY configs/screenrc /root/.screenrc
+
+###############################################################################
+# Add and build the custom PHP command
+###############################################################################
+COPY code /root/code
+WORKDIR /root/code
+RUN composer install
 
 WORKDIR /root
 
